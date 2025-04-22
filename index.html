@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML 파일 임베드 웹사이트</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .tab-content {
+            display: none;
+            height: calc(100vh - 60px);
+            width: 100%;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .tab-button.active {
+            background-color: #4F46E5;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="container mx-auto p-4">
+        <h1 class="text-2xl font-bold mb-6 text-center">HTML 파일 임베드 웹사이트</h1>
+        
+        <!-- Tab Navigation -->
+        <div class="flex mb-4 border-b border-gray-200">
+            <button class="tab-button active px-4 py-2 text-sm font-medium rounded-t-lg focus:outline-none transition-colors duration-200 mr-1" data-tab="tab1">1.html</button>
+            <button class="tab-button px-4 py-2 text-sm font-medium rounded-t-lg focus:outline-none transition-colors duration-200 mr-1" data-tab="tab2">2.html</button>
+            <button class="tab-button px-4 py-2 text-sm font-medium rounded-t-lg focus:outline-none transition-colors duration-200 mr-1" data-tab="tab3">3.html</button>
+            <button class="tab-button px-4 py-2 text-sm font-medium rounded-t-lg focus:outline-none transition-colors duration-200 mr-1" data-tab="tab4">4.html</button>
+            <button class="tab-button px-4 py-2 text-sm font-medium rounded-t-lg focus:outline-none transition-colors duration-200" data-tab="tab5">5.html</button>
+        </div>
+        
+        <!-- Tab Content -->
+        <div class="bg-white rounded-lg shadow-md">
+            <div id="tab1" class="tab-content active p-4">
+                <iframe src="1.html" title="1.html 내용"></iframe>
+            </div>
+            <div id="tab2" class="tab-content p-4">
+                <iframe src="2.html" title="2.html 내용"></iframe>
+            </div>
+            <div id="tab3" class="tab-content p-4">
+                <iframe src="3.html" title="3.html 내용"></iframe>
+            </div>
+            <div id="tab4" class="tab-content p-4">
+                <iframe src="4.html" title="4.html 내용"></iframe>
+            </div>
+            <div id="tab5" class="tab-content p-4">
+                <iframe src="5.html" title="5.html 내용"></iframe>
+            </div>
+        </div>
+
+        <div class="mt-4 text-center text-sm text-gray-500">
+            <p>각 HTML 파일은 iframe을 통해 임베드되었습니다. 탭을 클릭하여 다른 HTML 파일을 확인하세요.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to current button and content
+                    button.classList.add('active');
+                    const tabId = button.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
